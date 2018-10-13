@@ -19,7 +19,65 @@ class LVFileHandler {
         writeString(register.name,file)
         writeLabels(register.label,file)
 
-        println("Written over linguistic_variable_master, name: ${register.name} labels: ${register.label}")
+        println("Written over linguistic_variable_master, position: ${file.filePointer/Constants.LV_REGISTER_SIZE} " + "name: ${register.name}")
+
+        file.close()
+    }
+
+    /**
+     * Principal function to read from the random access file
+     */
+    @Throws(IOException::class)
+    fun read(position: Long = 0){
+        val file = RandomAccessFile(Constants.file, "rw")
+        file.seek(position*Constants.LV_REGISTER_SIZE)
+        var position = position
+        while(file.length()>file.filePointer){
+            val name = readString(file)
+            val labels = readLabels(file)
+            println("//-----Some register------//")
+            println("name: $name")
+            println("Position: $position")
+            println("File pointer: ${file.filePointer}")
+            labels.forEach { labelName ->
+                print("Label: ${labelName.labelName} | ")
+                print("Coordinate: ")
+                labelName.Coordinate.forEach { coordinate ->
+                    print(" ( ${coordinate.x} , ${coordinate.y} )")
+                }
+                println()
+            }
+            position++
+        }
+    }
+
+    /**
+     * Principal function to update over the random access file
+     */
+    @Throws(IOException::class)
+    fun update(register: LVRegister, position: Int) {
+        val file = RandomAccessFile(Constants.file, "rw")
+        file.seek((position*Constants.LV_REGISTER_SIZE).toLong())
+
+        writeString(register.name,file)
+        writeLabels(register.label,file)
+
+        println("Updated over linguistic_variable_master, position: $position name: ${register.name}")
+
+        file.close()
+    }
+
+    /**
+     * Principal function to delete over the random access file
+     */
+    @Throws(IOException::class)
+    fun delete(position: Int) {
+        val file = RandomAccessFile(Constants.file, "rw")
+        file.seek((position*Constants.LV_REGISTER_SIZE).toLong())
+
+        writeString("xxx",file)
+
+        println("Deleted over linguistic_variable_master, position: $position")
 
         file.close()
     }
@@ -52,31 +110,6 @@ class LVFileHandler {
         for (i in 0 until Constants.STRING_LENGTH) {
             if (str.length>i) file.writeChars(str[i].toString())
             else file.writeChars(' '.toString())
-        }
-    }
-
-    /**
-     * Principal function to read from the random access file
-     */
-    @Throws(IOException::class)
-    fun read(position: Long = 0){
-        val file = RandomAccessFile(Constants.file, "rw")
-        file.seek(position*Constants.LV_REGISTER_SIZE)
-        while(file.length()>file.filePointer){
-            val name = readString(file)
-            val labels = readLabels(file)
-            println("//-----Some register------//")
-            println("name: $name")
-            println("Position: $position")
-            println("File pointer: ${file.filePointer}")
-            labels.forEach { labelName ->
-                print("Label: ${labelName.labelName} | ")
-                print("Coordinate: ")
-                labelName.Coordinate.forEach { coordinate ->
-                    print(" ( ${coordinate.x} , ${coordinate.y} )")
-                }
-                println()
-            }
         }
     }
 

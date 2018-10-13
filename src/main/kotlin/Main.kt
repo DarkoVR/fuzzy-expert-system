@@ -8,7 +8,7 @@ fun main(args: Array<String>) {
     data.add(LVRegister("trabajo_en_equipo", arrayListOf(
             Label("malo",
                     arrayListOf(
-                            Coordinate(2.0,4.0),
+                            Coordinate(1.0,1.0),
                             Coordinate(3.0,6.0),
                             Coordinate(26.0,45.0),
                             Coordinate(62.0,84.0)
@@ -30,11 +30,18 @@ fun main(args: Array<String>) {
                             Coordinate(62.0,84.0)
                     )
             )
-    ), 0))
+    )))
 
     val fileHandler = LVFileHandler()
-    data.forEach {
+    /*data.forEach {
         fileHandler.write(it)
-    }
-    fileHandler.read(0)
+        fileHandler.write(it)
+        fileHandler.write(it)
+    }*/
+    fileHandler.read()
+    /*data.forEach {
+        fileHandler.update(it,2)
+    }*/
+    //fileHandler.delete(2)
+    //fileHandler.read()
 }
