@@ -144,7 +144,7 @@ class LVFileHandler {
         return text
     }
 
-    private fun readLabels(file: RandomAccessFile): ArrayList<Label>{
+    public fun readLabels(file: RandomAccessFile): ArrayList<Label>{
         val data: ArrayList<Label> = ArrayList()
         for (label in 0 until Constants.LABELS_LENGTH){
             val labelName = readString(file)
