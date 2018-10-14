@@ -9,11 +9,11 @@ import java.io.RandomAccessFile
 class LVFileHandler {
 
     /**
-     * Principal function to write over the random access file
+     * Principal function to write over the random access LV_FILE
      */
     @Throws(IOException::class)
     fun write(register: LVRegister) {
-        val file = RandomAccessFile(Constants.file, "rw")
+        val file = RandomAccessFile(Constants.LV_FILE, "rw")
         file.seek(file.length())
 
         writeString(register.name,file)
@@ -25,11 +25,11 @@ class LVFileHandler {
     }
 
     /**
-     * Principal function to read from the random access file
+     * Principal function to read from the random access LV_FILE
      */
     @Throws(IOException::class)
     fun read(position: Long = 0){
-        val file = RandomAccessFile(Constants.file, "rw")
+        val file = RandomAccessFile(Constants.LV_FILE, "rw")
         file.seek(position*Constants.LV_REGISTER_SIZE)
         var position = position
         while(file.length()>file.filePointer){
@@ -52,11 +52,11 @@ class LVFileHandler {
     }
 
     /**
-     * Principal function to update over the random access file
+     * Principal function to update over the random access LV_FILE
      */
     @Throws(IOException::class)
     fun update(register: LVRegister, position: Int) {
-        val file = RandomAccessFile(Constants.file, "rw")
+        val file = RandomAccessFile(Constants.LV_FILE, "rw")
         file.seek((position*Constants.LV_REGISTER_SIZE).toLong())
 
         writeString(register.name,file)
@@ -68,11 +68,11 @@ class LVFileHandler {
     }
 
     /**
-     * Principal function to delete over the random access file
+     * Principal function to delete over the random access LV_FILE
      */
     @Throws(IOException::class)
     fun delete(position: Int) {
-        val file = RandomAccessFile(Constants.file, "rw")
+        val file = RandomAccessFile(Constants.LV_FILE, "rw")
         file.seek((position*Constants.LV_REGISTER_SIZE).toLong())
 
         writeString("xxx",file)
