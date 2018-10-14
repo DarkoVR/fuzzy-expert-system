@@ -22,22 +22,16 @@ fun main(args: Array<String>) {
     val fuzzyInference = FuzzyInference()
     fuzzyInference.init()
 
-    //Due the FAM are created on every run, the file is deleted as well
+    //Due the FAM are created on every run, the file is deleted
     Constants.FAM_FILE.delete()
     fuzzyInference.createFamFile()
 
-    val famFileHandler = FAMFileHandler()
-    famFileHandler.read()
+    //Number of combination result
+    println("Numero de combinaciones totales: ${Constants.famList.size}")
+    //Get the real outputs after min-max calculus
+    val realOutput = fuzzyInference.getRealOutputs()
+    println("resultados reales: $realOutput")
 
-    //print every result from the famList
-    /*var combinations = 0
-    Constants.famList.forEach {
-        println("parent: ${it.outputName} ${it.outputLabel} ${it.outputMembership}")
-        println("antecedents: ")
-        it.antecedents.forEach {
-            println("inputname: ${it.inputName} inputMem ${it.inputMembership}")
-        }
-        combinations++
-    }
-    println("combinations: $combinations")*/
+    //val famFileHandler = FAMFileHandler()
+    //famFileHandler.read(2916)
 }

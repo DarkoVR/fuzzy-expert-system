@@ -61,6 +61,9 @@ class FuzzyInference {
     fun createFamFile(){
         val famFileHandler = FAMFileHandler()
         //Assigns the minus and output variable to every entry in the FAM
+        val assignedVariable: Int = Constants.famList.size/4
+
+        var combination = 0
         Constants.famList.forEach {
             var minus = 1.0
             it.antecedents.forEach {
@@ -68,10 +71,41 @@ class FuzzyInference {
                     minus = it.inputMembership
             }
             it.outputMembership = minus
-            it.outputName = "Insuficiente pero con ganas de mejorar"
+            when {
+                combination < (assignedVariable) -> it.outputName = Constants.OUTPUT_VAR_1
+                combination in (assignedVariable)..(assignedVariable*2-1) -> it.outputName = Constants.OUTPUT_VAR_2
+                combination in (assignedVariable*2)..(assignedVariable*3-1) -> it.outputName = Constants.OUTPUT_VAR_3
+                combination >= (assignedVariable*3) -> it.outputName = Constants.OUTPUT_VAR_4
+            }
+            combination++
         }
         Constants.famList.forEach {
             famFileHandler.write(it)
         }
+    }
+
+    fun getRealOutputs(): ArrayList<Double>{
+        val outputs: ArrayList<Double> = ArrayList()
+        var output1 = 0.0
+        var output2 = 0.0
+        var output3 = 0.0
+        var output4 = 0.0
+        Constants.famList.forEach {
+            when {
+                it.outputName == Constants.OUTPUT_VAR_1 ->
+                    if (it.outputMembership > output1) output1 = it.outputMembership
+                it.outputName == Constants.OUTPUT_VAR_2 ->
+                    if (it.outputMembership > output2) output2 = it.outputMembership
+                it.outputName == Constants.OUTPUT_VAR_3 ->
+                    if (it.outputMembership > output3) output3= it.outputMembership
+                it.outputName == Constants.OUTPUT_VAR_4 ->
+                    if (it.outputMembership > output4) output4 = it.outputMembership
+            }
+        }
+        outputs.add(output1)
+        outputs.add(output2)
+        outputs.add(output3)
+        outputs.add(output4)
+        return outputs
     }
 }
