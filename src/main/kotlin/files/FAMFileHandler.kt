@@ -76,7 +76,7 @@ class FAMFileHandler {
         val file = RandomAccessFile(Constants.FAM_FILE, "rw")
         file.seek((position*Constants.FAM_REGISTER_SIZE).toLong())
 
-        writeString("xxx",file)
+        writeString("",file)
 
         println("Deleted over fuzzy_access_matrix_master, position: ${file.filePointer/Constants.LV_REGISTER_SIZE}")
 

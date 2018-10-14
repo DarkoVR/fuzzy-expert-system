@@ -1,4 +1,9 @@
+import models.Fuzzification
+import models.LVRegister
 import java.io.File
+import java.util.ArrayList
+
+
 
 object Constants {
     val STRING_LENGTH = 40
@@ -12,4 +17,11 @@ object Constants {
     //Files
     val LV_FILE = File("linguistic_variable_master")
     val FAM_FILE = File("fuzzy_access_matrix_master")
+
+    @JvmStatic
+    val lvList: ArrayList<LVRegister> = ArrayList()
+    @JvmStatic
+    val fuzzificationList: ArrayList<Fuzzification> = ArrayList()
+    @JvmStatic
+    val listOfLists = ArrayList<List<Fuzzification>>()
 }
