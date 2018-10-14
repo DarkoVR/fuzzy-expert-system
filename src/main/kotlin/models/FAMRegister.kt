@@ -1,7 +1,7 @@
 package models
 
 data class FAMRegister (
-        val outputName: String,
-        val outputMembership: Double,
+        var outputName: String,
+        var outputMembership: Double,
         val antecedents: ArrayList<Background>
 )

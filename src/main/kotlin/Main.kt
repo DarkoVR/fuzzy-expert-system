@@ -1,27 +1,43 @@
+import files.FAMFileHandler
 import files.LVFileHandler
 import fuzzyLogic.FuzzificationProcess
 import fuzzyLogic.FuzzyInference
-import models.Coordinate
-import models.LVRegister
-import models.Label
-import java.util.ArrayList
-
 
 
 fun main(args: Array<String>) {
-    val fileHandler = LVFileHandler()
-    fileHandler.read()
+    //Read the file and fills the lvList with every linguistic variable and add them into lvList
+    val lvFileHandler = LVFileHandler()
+    lvFileHandler.read()
+
+    //Filter the lvList to only have real information not included empty data
     val fuzzificationProcess = FuzzificationProcess()
     fuzzificationProcess.init()
 
+    //Manual input of every linguistic variable, returns result of evaluation and add it into fuzzificationList
     Constants.lvList.forEach {
         Constants.fuzzificationList.add(fuzzificationProcess.fuzzificationProcess(it,90.0))
     }
 
-    /*Constants.fuzzificationList.forEach {
-        println(it)
-    }*/
-
+    //This fuzzifies the results and creates the FAM into famList
     val fuzzyInference = FuzzyInference()
     fuzzyInference.init()
+
+    //Due the FAM are created on every run, the file is deleted as well
+    Constants.FAM_FILE.delete()
+    fuzzyInference.createFamFile()
+
+    val famFileHandler = FAMFileHandler()
+    famFileHandler.read()
+
+    //print every result from the famList
+    /*var combinations = 0
+    Constants.famList.forEach {
+        println("parent: ${it.outputName} ${it.outputLabel} ${it.outputMembership}")
+        println("antecedents: ")
+        it.antecedents.forEach {
+            println("inputname: ${it.inputName} inputMem ${it.inputMembership}")
+        }
+        combinations++
+    }
+    println("combinations: $combinations")*/
 }

@@ -1,3 +1,4 @@
+import models.FAMRegister
 import models.Fuzzification
 import models.LVRegister
 import java.io.File
@@ -23,5 +24,5 @@ object Constants {
     @JvmStatic
     val fuzzificationList: ArrayList<Fuzzification> = ArrayList()
     @JvmStatic
-    val listOfLists = ArrayList<List<Fuzzification>>()
+    val famList: ArrayList<FAMRegister> = ArrayList()
 }
