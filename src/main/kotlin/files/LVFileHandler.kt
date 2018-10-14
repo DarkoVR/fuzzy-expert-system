@@ -28,10 +28,10 @@ class LVFileHandler {
      * Principal function to read from the random access LV_FILE
      */
     @Throws(IOException::class)
-    fun read(position: Long = 0){
+    fun read(){
         val file = RandomAccessFile(Constants.LV_FILE, "rw")
-        file.seek(position*Constants.LV_REGISTER_SIZE)
-        var position = position
+        file.seek(0)
+        var position = 1
         while(file.length()>file.filePointer){
             val name = readString(file)
             val labels = readLabels(file)
@@ -48,6 +48,30 @@ class LVFileHandler {
                 println()
             }
             position++
+        }
+    }
+
+    /**
+     * Overload function to read one from the random access LV_FILE
+     */
+    @Throws(IOException::class)
+    fun read(position: Long){
+        val file = RandomAccessFile(Constants.LV_FILE, "rw")
+        val position = position-1
+        file.seek(position*Constants.LV_REGISTER_SIZE)
+        val name = readString(file)
+        val labels = readLabels(file)
+        println("//-----Some register------//")
+        println("name: $name")
+        println("Position: ${position+1}")
+        println("File pointer: ${file.filePointer}")
+        labels.forEach { labelName ->
+            print("Label: ${labelName.labelName} | ")
+            print("Coordinate: ")
+            labelName.Coordinate.forEach { coordinate ->
+                print(" ( ${coordinate.x} , ${coordinate.y} )")
+            }
+            println()
         }
     }
 

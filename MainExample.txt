@@ -1,0 +1,212 @@
+val data: ArrayList<LVRegister> = ArrayList()
+val data: ArrayList<LVRegister> = ArrayList()
+data.add(LVRegister("Capacidad de analisis y sintesis", arrayListOf(
+    Label("malo",
+            arrayListOf(
+                    Coordinate(0.0,1.0),
+                    Coordinate(40.0,1.0),
+                    Coordinate(60.0,0.0)
+            )
+    ),
+    Label("regular",
+            arrayListOf(
+                    Coordinate(58.0,0.0),
+                    Coordinate(70.0,1.0),
+                    Coordinate(80.0,1.0),
+                    Coordinate(92.0,0.0)
+            )
+    ),
+    Label("bueno",
+            arrayListOf(
+                    Coordinate(86.4,0.0),
+                    Coordinate(92.0,1.0),
+                    Coordinate(100.0,1.0)
+            )
+    )
+)))
+data.add(LVRegister("Trabajo en equipo", arrayListOf(
+    Label("malo",
+            arrayListOf(
+                    Coordinate(0.0,0.0),
+                    Coordinate(30.0,1.0),
+                    Coordinate(60.0,0.0)
+            )
+    ),
+    Label("regular",
+            arrayListOf(
+                    Coordinate(48.0,0.0),
+                    Coordinate(60.0,1.0),
+                    Coordinate(80.0,1.0),
+                    Coordinate(92.0,0.0)
+            )
+    ),
+    Label("bueno",
+            arrayListOf(
+                    Coordinate(85.2,0.0),
+                    Coordinate(92.0,1.0),
+                    Coordinate(100.0,1.0)
+            )
+    )
+)))
+data.add(LVRegister("Trabajar de manera autonoma", arrayListOf(
+    Label("malo",
+            arrayListOf(
+                    Coordinate(0.0,1.0),
+                    Coordinate(35.0,1.0),
+                    Coordinate(70.0,0.0)
+            )
+    ),
+    Label("regular",
+            arrayListOf(
+                    Coordinate(57.5,0.0),
+                    Coordinate(75.0,1.0),
+                    Coordinate(92.5,0.0)
+            )
+    ),
+    Label("bueno",
+            arrayListOf(
+                    Coordinate(81.25,0.0),
+                    Coordinate(90.0,1.0),
+                    Coordinate(100.0,1.0)
+            )
+    )
+)))
+data.add(LVRegister("Diseñar y gestionar proyectos", arrayListOf(
+    Label("malo",
+            arrayListOf(
+                    Coordinate(0.0,0.0),
+                    Coordinate(20.0,1.0),
+                    Coordinate(40.0,1.0),
+                    Coordinate(60.0,0.0)
+            )
+    ),
+    Label("regular",
+            arrayListOf(
+                    Coordinate(55.0,0.0),
+                    Coordinate(60.0,1.0),
+                    Coordinate(70.0,1.0),
+                    Coordinate(75.0,0.0)
+            )
+    ),
+    Label("bueno",
+            arrayListOf(
+                    Coordinate(73.75,0.0),
+                    Coordinate(75.0,1.0),
+                    Coordinate(100.0,1.0)
+            )
+    )
+)))
+data.add(LVRegister("Habilidades de investigación", arrayListOf(
+    Label("malo",
+            arrayListOf(
+                    Coordinate(0.0,0.0),
+                    Coordinate(40.0,1.0),
+                    Coordinate(80.0,0.0)
+            )
+    ),
+    Label("bueno",
+            arrayListOf(
+                    Coordinate(67.2,0.0),
+                    Coordinate(80.0,1.0),
+                    Coordinate(100.0,1.0)
+            )
+    )
+)))
+data.add(LVRegister("Busqueda del logro", arrayListOf(
+    Label("regular",
+            arrayListOf(
+                    Coordinate(0.0,0.0),
+                    Coordinate(25.0,1.0),
+                    Coordinate(50.0,0.0)
+            )
+    ),
+    Label("bueno",
+            arrayListOf(
+                    Coordinate(47.5,0.0),
+                    Coordinate(50.0,1.0),
+                    Coordinate(100.0,1.0)
+            )
+    )
+)))
+data.add(LVRegister("Aplicar conocimientos en la practica", arrayListOf(
+    Label("malo",
+            arrayListOf(
+                    Coordinate(0.0,0.0),
+                    Coordinate(30.0,1.0),
+                    Coordinate(60.0,0.0)
+            )
+    ),
+    Label("regular",
+            arrayListOf(
+                    Coordinate(37.0,0.0),
+                    Coordinate(55.0,1.0),
+                    Coordinate(73.0,0.0)
+            )
+    ),
+    Label("bueno",
+            arrayListOf(
+                    Coordinate(69.2,0.0),
+                    Coordinate(80.0,1.0),
+                    Coordinate(90.8,0.0)
+            )
+    ),
+    Label("excelente",
+            arrayListOf(
+                    Coordinate(88.52,0.0),
+                    Coordinate(95.0,1.0),
+                    Coordinate(100.0,1.0)
+            )
+    )
+)))
+data.add(LVRegister("Solucion de problemas", arrayListOf(
+    Label("malo",
+            arrayListOf(
+                    Coordinate(0.0,0.0),
+                    Coordinate(40.0,1.0),
+                    Coordinate(80.0,0.0)
+            )
+    ),
+    Label("regular",
+            arrayListOf(
+                    Coordinate(68.0,0.0),
+                    Coordinate(80.0,1.0),
+                    Coordinate(92.0,0.0)
+            )
+    ),
+    Label("bueno",
+            arrayListOf(
+                    Coordinate(91.4,0.0),
+                    Coordinate(95.0,1.0),
+                    Coordinate(100.0,1.0)
+            )
+    )
+)))
+
+    val fileHandler = LVFileHandler()
+    data.forEach {
+        fileHandler.write(it)
+    }
+    fileHandler.read()
+    data.forEach {
+        fileHandler.update(it,2)
+    }
+    fileHandler.delete(2)
+    fileHandler.read()
+
+    val fileHandler1 = FAMFileHandler()
+    val data1: ArrayList<FAMRegister> = ArrayList()
+    data1.add(FAMRegister("suficiente",0.4, arrayListOf(
+            Background("malo",0.5),
+            Background("malo",0.7),
+            Background("malo",0.9),
+            Background("malo",1.0)
+    )))
+    data1.forEach {
+        fileHandler1.write(it)
+    }
+    fileHandler1.read()
+    data1.forEach {
+        fileHandler1.update(it,1)
+    }
+    fileHandler1.delete(1)
+    fileHandler1.read()
