@@ -12,8 +12,14 @@ class centroid
     {
         val centroidCoordinate : Coordinate
 
-        val x : Double
-        val y : Double
+        var x : Double = 0.0
+        val y : Double = 0.0
+        val i : Double = 0.0
+
+        while(i<=100)
+        {
+            //x =x+i*difuzzify(i)
+        }
 
         centroidCoordinate = Coordinate(x,y)
 
