@@ -126,9 +126,18 @@ class DefuzzificationProcess {
                     }
                 }
             }
-            println("Altered result linguistic variable")
-            println(register)
-            calculateCentroid(register,1.0)
+            println("Grafico de variable de salida: ")
+            println(register.name)
+            register.label.forEach {
+                print("etiqueta: ${it.labelName}")
+                print(" { ")
+                it.Coordinate.forEach {
+                    print("(x:${it.x}, y:${it.y}),")
+                }
+                print(" }")
+                println()
+            }
+            calculateCentroid(register,0.1)
         }
         return defuzzification
     }
