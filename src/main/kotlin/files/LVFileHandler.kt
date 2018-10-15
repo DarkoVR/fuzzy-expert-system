@@ -29,13 +29,14 @@ class LVFileHandler {
      */
     @Throws(IOException::class)
     fun read(){
+        Constants.lvList.clear()
         val file = RandomAccessFile(Constants.LV_FILE, "rw")
         file.seek(0)
         var position = 1
         while(file.length()>file.filePointer){
             val name = readString(file)
             val labels = readLabels(file)
-            println("//-----Some register------//")
+            /*println("//-----Some register------//")
             println("name: $name")
             println("Position: $position")
             println("File pointer: ${file.filePointer}")
@@ -46,7 +47,8 @@ class LVFileHandler {
                     print(" ( ${coordinate.x} , ${coordinate.y} )")
                 }
                 println()
-            }
+            }*/
+            Constants.lvList.add(LVRegister(name,labels))
             position++
         }
     }
@@ -99,7 +101,7 @@ class LVFileHandler {
         val file = RandomAccessFile(Constants.LV_FILE, "rw")
         file.seek((position*Constants.LV_REGISTER_SIZE).toLong())
 
-        writeString("xxx",file)
+        writeString("",file)
 
         println("Deleted over linguistic_variable_master, position: $position")
 
@@ -124,8 +126,8 @@ class LVFileHandler {
                 file.writeDouble(coordinates[i].x)
                 file.writeDouble(coordinates[i].y)
             }else{
-                file.writeDouble(0.0)
-                file.writeDouble(0.0)
+                file.writeDouble(-1.0)
+                file.writeDouble(-1.0)
             }
         }
     }

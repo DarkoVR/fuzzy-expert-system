@@ -1,6 +1,7 @@
-import files.LVFileHandler
+import vews.Menu
+
 
 fun main(args: Array<String>) {
-    val fileHandler = LVFileHandler()
-    fileHandler.read()
+    val menu = Menu()
+    menu.menu()
 }

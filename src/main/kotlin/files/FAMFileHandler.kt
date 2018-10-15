@@ -20,7 +20,7 @@ class FAMFileHandler {
         file.writeDouble(register.outputMembership)
         writeAntecedents(register.antecedents,file)
 
-        println("Written over fuzzy_access_matrix_master, position: ${file.filePointer/Constants.LV_REGISTER_SIZE} " +
+        println("Written over fuzzy_access_matrix_master, position: ${file.filePointer/Constants.FAM_REGISTER_SIZE} " +
                 "name: ${register.outputName}")
 
         file.close()
@@ -30,10 +30,10 @@ class FAMFileHandler {
      * Principal function to read from the random access file
      */
     @Throws(IOException::class)
-    fun read(position: Long = 0){
+    fun read(){
         val file = RandomAccessFile(Constants.FAM_FILE, "rw")
-        file.seek(position*Constants.FAM_REGISTER_SIZE)
-        var position = position
+        file.seek(0)
+        var position = 1
         while(file.length()>file.filePointer){
             val name = readString(file)
             val nameMembership = file.readDouble()
@@ -48,6 +48,28 @@ class FAMFileHandler {
             }
             position++
         }
+    }
+
+    /**
+     * Overload function to read from the random access file
+     */
+    @Throws(IOException::class)
+    fun read(position: Long){
+        val file = RandomAccessFile(Constants.FAM_FILE, "rw")
+        file.seek(position*Constants.FAM_REGISTER_SIZE)
+        var position = position-1
+        val name = readString(file)
+        val nameMembership = file.readDouble()
+        val inputs = readInputs(file)
+        println("//-----Some register------//")
+        println("output: $name")
+        println("outputMembership: $nameMembership")
+        println("Position: ${position+1}")
+        println("File pointer: ${file.filePointer}")
+        inputs.forEach {
+            println("input: ${it.inputName} memebership: ${it.inputMembership}")
+        }
+        position++
     }
 
     /**
@@ -76,7 +98,7 @@ class FAMFileHandler {
         val file = RandomAccessFile(Constants.FAM_FILE, "rw")
         file.seek((position*Constants.FAM_REGISTER_SIZE).toLong())
 
-        writeString("xxx",file)
+        writeString("",file)
 
         println("Deleted over fuzzy_access_matrix_master, position: ${file.filePointer/Constants.LV_REGISTER_SIZE}")
 
