@@ -1,10 +1,12 @@
 package fuzzyLogic
 
+import models.Background
 import models.Coordinate
 import models.Defuzzification
 import models.LVRegister
+import java.text.DecimalFormat
 
-class DefuzzyficationProcess {
+class DefuzzificationProcess {
     fun alterGraphic(lvRegister: LVRegister, fuzzyOuputs: ArrayList<Double>): Defuzzification {
         val defuzzification = Defuzzification()
         lvRegister.let { register ->
@@ -35,8 +37,10 @@ class DefuzzyficationProcess {
                             val resultX2 = ((input-y1)/(y2-y1))*(x2-x1)+x1
                             register.label[i].Coordinate.clear()
                             register.label[i].Coordinate.add(first)
-                            register.label[i].Coordinate.add(Coordinate(resultX1,input))
-                            register.label[i].Coordinate.add(Coordinate(resultX2,input))
+                            if (resultX1 != Double.NEGATIVE_INFINITY)
+                                register.label[i].Coordinate.add(Coordinate(resultX1,input))
+                            if (resultX2 != Double.NEGATIVE_INFINITY)
+                                register.label[i].Coordinate.add(Coordinate(resultX2,input))
                             register.label[i].Coordinate.add(last)
                         }
                     }
@@ -101,28 +105,16 @@ class DefuzzyficationProcess {
                             register.label[i].Coordinate.add(Coordinate(0.0,0.0))
                             register.label[i].Coordinate.add(Coordinate(0.0,0.0))
                         }else{
-                            println("input = $input")
-                            println("i = $i")
                             var x1 = register.label[i].Coordinate[0].x
-                            println("x1: $x1")
                             var x2 = register.label[i].Coordinate[1].x
-                            println("x2: $x2")
                             var y1 = register.label[i].Coordinate[0].y
-                            println("y1: $y1")
                             var y2 = register.label[i].Coordinate[1].y
-                            println("y2: $y2")
                             val resultX1 = ((input-y1)/(y2-y1))*(x2-x1)+x1
-                            println("resultX1: $resultX1")
                             x1 = register.label[i].Coordinate[register.label[i].Coordinate.size-2].x
-                            println("x1: $x1")
                             x2 = register.label[i].Coordinate[register.label[i].Coordinate.size-1].x
-                            println("x2: $x2")
                             y1 = register.label[i].Coordinate[register.label[i].Coordinate.size-2].y
-                            println("y1: $y1")
                             y2 = register.label[i].Coordinate[register.label[i].Coordinate.size-1].y
-                            println("y2: $y2")
                             val resultX2 = ((input-y1)/(y2-y1))*(x2-x1)+x1
-                            println("resultX2: $resultX2")
                             register.label[i].Coordinate.clear()
                             register.label[i].Coordinate.add(first)
                             if (resultX1 != Double.NEGATIVE_INFINITY)
@@ -136,7 +128,52 @@ class DefuzzyficationProcess {
             }
             println("Altered result linguistic variable")
             println(register)
+            calculateCentroid(register,1.0)
         }
         return defuzzification
+    }
+
+    private fun calculateCentroid(lvRegister: LVRegister, steps: Double): Double{
+        var forwarding = 0.0
+        var result = 0.0
+        var div = 0.0
+        var centroid: Double
+        lvRegister.let { register ->
+            while (forwarding <= 100){
+                val currentLabel = //finds if is a graphic to evaluate over if not ignores it and increases forward
+                        register.label.find {
+                            it.Coordinate.first().x <= forwarding && it.Coordinate.last().x >= forwarding
+                        }
+                if (currentLabel != null){
+                    for (i in 0 until currentLabel.Coordinate.size){
+                        if (currentLabel.Coordinate.size > i+1){
+                            if (currentLabel.Coordinate[i].x <= forwarding && currentLabel.Coordinate[i+1].x >= forwarding){
+                                val x1 =currentLabel.Coordinate[i].x
+                                val x2 = currentLabel.Coordinate[i+1].x
+                                val y1 = currentLabel.Coordinate[i].y
+                                val y2 = currentLabel.Coordinate[i+1].y
+                                val numberFormat = DecimalFormat("#.00")
+                                val upEvaluation =
+                                        if ((((forwarding-x1)/(x2-x1))*(y2-y1)+y1)*forwarding > 0)
+                                            numberFormat.format((((forwarding-x1)/(x2-x1))*(y2-y1)+y1)*forwarding).toDouble()
+                                        else
+                                            0.0
+                                val downEvaluation =
+                                        if (((forwarding-x1)/(x2-x1))*(y2-y1)+y1 > 0)
+                                            numberFormat.format(((forwarding-x1)/(x2-x1))*(y2-y1)+y1).toDouble()
+                                        else
+                                            0.0
+                                result += upEvaluation
+                                div += downEvaluation
+                            }
+                        }
+                    }
+                }
+                forwarding += steps
+            }
+            centroid = result/div
+            println("Centroide: $centroid")
+            return centroid
+        }
     }
 }

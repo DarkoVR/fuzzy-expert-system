@@ -1,5 +1,5 @@
 import files.LVFileHandler
-import fuzzyLogic.DefuzzyficationProcess
+import fuzzyLogic.DefuzzificationProcess
 import fuzzyLogic.FuzzificationProcess
 import fuzzyLogic.FuzzyInference
 
@@ -34,7 +34,7 @@ fun main(args: Array<String>) {
     println("salida difusa: $fuzzyOutput")
 
     //Alter the linguistic output variable in order to the fuzzy outputs
-    val defuzzification = DefuzzyficationProcess()
+    val defuzzification = DefuzzificationProcess()
     defuzzification.alterGraphic(Constants.RESULT_LV,fuzzyOutput)
 
     //val famFileHandler = FAMFileHandler()

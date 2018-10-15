@@ -37,11 +37,14 @@ class FuzzificationProcess {
             register.label.forEach { label ->
                 var result = 0.0
                 if (label.Coordinate.first().x <= inputValue && label.Coordinate.last().x >= inputValue) { //domain restriction
-                    for (i in 0 until label.Coordinate.size){
-                        if (label.Coordinate.size > i+1){
-                            if (label.Coordinate[i].x <= inputValue && label.Coordinate[i+1].x >= inputValue){
-                                result = ((inputValue-label.Coordinate[i].x)/(label.Coordinate[i+1].x-label.Coordinate[i].x))*
-                                        (label.Coordinate[i+1].y-label.Coordinate[i].y)+label.Coordinate[i].y
+                    for (i in 0 until label.Coordinate.size){ //Iteration by coordinate with restriction
+                        if (label.Coordinate.size > i+1){ //Due it takes the i+1 value it can't be null values ahead
+                            if (label.Coordinate[i].x <= inputValue && label.Coordinate[i+1].x >= inputValue){ //restriction
+                                val x1 = label.Coordinate[i].x
+                                val x2 = label.Coordinate[i+1].x
+                                val y1 = label.Coordinate[i].y
+                                val y2 = label.Coordinate[i+1].y
+                                result = ((inputValue-x1)/(x2-x1))*(y2-y1)+y1
                                 if (fuzzification.fuzzyOutput.find { it.inputName == label.labelName } == null)
                                     fuzzification.fuzzyOutput.add(Background(label.labelName,result))
                             }
