@@ -1,6 +1,4 @@
-import models.FAMRegister
-import models.Fuzzification
-import models.LVRegister
+import models.*
 import java.io.File
 import java.util.ArrayList
 
@@ -30,4 +28,11 @@ object Constants {
     val fuzzificationList: ArrayList<Fuzzification> = ArrayList()
     @JvmStatic
     val famList: ArrayList<FAMRegister> = ArrayList()
+    //Result linguistic variable
+    val RESULT_LV = LVRegister("Calificacion", arrayListOf(
+            Label("Insuficiente", arrayListOf(Coordinate(0.0,0.0), Coordinate(30.0,1.0), Coordinate(60.0,0.0))),
+            Label("Casi suficiente", arrayListOf(Coordinate(37.0,0.0), Coordinate(55.0,1.0), Coordinate(73.0,0.0))),
+            Label("Suficiente", arrayListOf(Coordinate(69.2,0.0), Coordinate(80.0,1.0), Coordinate(90.8,0.0))),
+            Label("Excelente", arrayListOf(Coordinate(88.52,0.0), Coordinate(95.0,1.0), Coordinate(100.0,1.0)))
+    ))
 }

@@ -1,5 +1,5 @@
-import files.FAMFileHandler
 import files.LVFileHandler
+import fuzzyLogic.DefuzzyficationProcess
 import fuzzyLogic.FuzzificationProcess
 import fuzzyLogic.FuzzyInference
 
@@ -25,12 +25,17 @@ fun main(args: Array<String>) {
     //Due the FAM are created on every run, the file is deleted
     Constants.FAM_FILE.delete()
     fuzzyInference.createFamFile()
+    fuzzyInference.writeFAMInToFile()
 
     //Number of combination result
     println("Numero de combinaciones totales: ${Constants.famList.size}")
     //Get the real outputs after min-max calculus
-    val realOutput = fuzzyInference.getRealOutputs()
-    println("resultados reales: $realOutput")
+    val fuzzyOutput = fuzzyInference.getFuzzyOutput()
+    println("salida difusa: $fuzzyOutput")
+
+    //Alter the linguistic output variable in order to the fuzzy outputs
+    val defuzzification = DefuzzyficationProcess()
+    defuzzification.alterGraphic(Constants.RESULT_LV,fuzzyOutput)
 
     //val famFileHandler = FAMFileHandler()
     //famFileHandler.read(2916)

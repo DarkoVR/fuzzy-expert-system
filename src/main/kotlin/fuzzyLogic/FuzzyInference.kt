@@ -59,7 +59,6 @@ class FuzzyInference {
     }
 
     fun createFamFile(){
-        val famFileHandler = FAMFileHandler()
         //Assigns the minus and output variable to every entry in the FAM
         val assignedVariable: Int = Constants.famList.size/4
 
@@ -79,12 +78,16 @@ class FuzzyInference {
             }
             combination++
         }
+    }
+
+    fun writeFAMInToFile(){
+        val famFileHandler = FAMFileHandler()
         Constants.famList.forEach {
             famFileHandler.write(it)
         }
     }
 
-    fun getRealOutputs(): ArrayList<Double>{
+    fun getFuzzyOutput(): ArrayList<Double>{
         val outputs: ArrayList<Double> = ArrayList()
         var output1 = 0.0
         var output2 = 0.0
@@ -102,6 +105,7 @@ class FuzzyInference {
                     if (it.outputMembership > output4) output4 = it.outputMembership
             }
         }
+        //val numberFormat = DecimalFormat("#.00")
         outputs.add(output1)
         outputs.add(output2)
         outputs.add(output3)
