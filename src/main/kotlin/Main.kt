@@ -1,8 +1,6 @@
-import files.LVFileHandler
 import models.*
-import java.io.RandomAccessFile
-import  Chart.Chart
-import inference.difuzzify
+import Fuzzyinference.centroid
+import Fuzzyinference.difuzzify
 
 fun main(args: Array<String>) {
     /*val fileHandler = LVFileHandler()
@@ -29,19 +27,19 @@ fun main(args: Array<String>) {
                             Coordinate(90.0,1.0),
                             Coordinate(100.0,0.0)
                     )
-            ),
-            Label("regular",
-                    arrayListOf(
-                            Coordinate(80.0,0.0),
-                            Coordinate(90.0,1.0),
-                            Coordinate(100.0,1.0)
-                    )
             )
     )))
 
 
-    //println(data)
+    println(data)
 
-    val diffus = difuzzify()
-    println(diffus.dufuss(83.0, data[0]))
+    val diffus = centroid()
+    //val diffuso = difuzzify()
+
+    println(diffus.calculateCentroid(data[0],arrayListOf(0.5)))
+    /*println(diffuso.difuss(90.0, arrayListOf(
+            Coordinate(80.0,0.0),
+            Coordinate(90.0,1.0),
+            Coordinate(100.0,0.0)
+    )))*/
 }

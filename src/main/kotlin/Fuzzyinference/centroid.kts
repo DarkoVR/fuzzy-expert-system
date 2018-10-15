@@ -1,12 +1,9 @@
-package inference
+package Fuzzyinference
 import models.Coordinate
 import models.Label
-import files.LVFileHandler
 import models.LVRegister
-import java.io.RandomAccessFile
-import Constants
 
-class centroid
+class centroidsss
 {
     fun calculateCentroid() : Coordinate
     {
@@ -38,29 +35,29 @@ class centroid
         var j : Int = 0
         var n : Int = 0
 
-            centroidCoordenates.add(Coordinate(membershipCoordenates[i].x,membershipCoordenates[i].y))
+        centroidCoordenates.add(Coordinate(membershipCoordenates[i].x,membershipCoordenates[i].y))
 
-            while (membershipCoordenates[i].x!=100.0)
-            {
-                if(j>=2) {
-                    j=0
-                    n++
+        while (membershipCoordenates[i].x!=100.0)
+        {
+            if(j>=2) {
+                j=0
+                n++
 
-                   if(membershipCoordenates[i].x!=100.0) {
-                       centroidCoordenates.add(calcIntersection(i, membershipCoordenates))
-                       i++
-                   }
+                if(membershipCoordenates[i].x!=100.0) {
+                    centroidCoordenates.add(calcIntersection(i, membershipCoordenates))
+                    i++
                 }
-
-                if((membershipCoordenates[i].y == membershipCoordenates[i+1].y)) {
-                    j--
-                } else {
-                    x = (((outputVariable[n] - membershipCoordenates[i].y)/(membershipCoordenates[i+1].y - membershipCoordenates[i].y))*(membershipCoordenates[i+1].x - membershipCoordenates[i].x)) + membershipCoordenates[i].x
-                    centroidCoordenates.add(Coordinate(x,outputVariable[n]))
-                }
-                j++
-                i++
             }
+
+            if((membershipCoordenates[i].y == membershipCoordenates[i+1].y)) {
+                j--
+            } else {
+                x = (((outputVariable[n] - membershipCoordenates[i].y)/(membershipCoordenates[i+1].y - membershipCoordenates[i].y))*(membershipCoordenates[i+1].x - membershipCoordenates[i].x)) + membershipCoordenates[i].x
+                centroidCoordenates.add(Coordinate(x,outputVariable[n]))
+            }
+            j++
+            i++
+        }
         return centroidCoordenates
     }
 
@@ -70,7 +67,7 @@ class centroid
 
         labels.forEach { label ->
             label.Coordinate.forEach { coordinate ->
-              coordenates.add(coordinate)
+                coordenates.add(coordinate)
             }
         }
         return coordenates
