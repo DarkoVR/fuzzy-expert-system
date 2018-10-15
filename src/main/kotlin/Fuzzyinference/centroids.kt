@@ -19,26 +19,36 @@ class centroid
         var x1 : Double = 0.0
         var x2 : Double = 0.0
         val y : Double = 0.0
+        val y1 : Double = 0.0
+        val y2 : Double = 0.0
         var i : Double = 0.0
         val DF = difuzzify()
         var DFV : Double
-        while(i<=20)
+
+        while(i<=100)
         {
-            DFV = DF.difuss((80+i),intersecrionCoordenates)
-            //println(DFV)
-            //x=(((80.0+i)*DFV)/(DFV))+ x
+            DFV = DF.difuzzx((80+i),intersecrionCoordenates)
             x1=((80.0+i)*(DFV))+x1
             x2=x2+DFV
+            i += 0.001
+        }
 
-            //println("hola $x1")
+        while(i<=100)
+        {
+            DFV = DF.difuzzy((80+i),intersecrionCoordenates)
+            x1=((80.0+i)*(DFV))+x1
+            x2=x2+DFV
             i += 0.001
         }
 
         x = x1/x2
+
+
+
         print ("valor de x: $x")
 
         //centroidCoordinate = Coordinate(x,y)
-        return Coordinate(2.2,2.2)
+        return Coordinate(x,2.2)
     }
 
     fun getIntersectionPoints(membershipGrade : LVRegister, outputVariable : ArrayList<Double>) : ArrayList<Coordinate>

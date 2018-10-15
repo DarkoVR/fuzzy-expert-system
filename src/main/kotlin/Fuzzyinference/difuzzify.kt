@@ -32,7 +32,7 @@ class difuzzify
     }
 
 
-    fun difussy(x : Double, coordenates : ArrayList<Coordinate>) : Double
+    fun difuzzy(x : Double, coordenates : ArrayList<Coordinate>) : Double
     {
         var y: Double =0.0
             for (i in 0 until coordenates.size-1)
@@ -55,17 +55,16 @@ class difuzzify
         return y
     }
 
-
-    fun difussx(x : Double, coordenates : ArrayList<Coordinate>) : Double
+    fun difuzzx(y : Double, coordenates : ArrayList<Coordinate>) : Double
     {
         var y: Double =0.0
         for (i in 0 until coordenates.size-1)
         {
-            if(x<=coordenates[coordenates.size-1].x && x>=coordenates[0].x )
+            if(y<=coordenates[coordenates.size-1].x && y>=coordenates[0].x )
             {
-                if(x>=coordenates[i].x && x<=coordenates[i+1].x)
+                if(y>=coordenates[i].x && y<=coordenates[i+1].x)
                 {
-                    y=((((coordenates[i+1].y - coordenates[i].y) / (coordenates[i+1].x - coordenates[i].x)) * (x - coordenates[i].x)) + coordenates[i].y)
+                    y=((((y - coordenates[i].y) / (coordenates[i+1].y - coordenates[i].y)) * (coordenates[i+1].x - coordenates[i].x)) + coordenates[i].x)
                 }
             }
             else{
@@ -75,7 +74,7 @@ class difuzzify
         print("valor de y = ")
         println(y)
         print("valor de x = ")
-        println(x)
+        println(y)
         return y
     }
 }

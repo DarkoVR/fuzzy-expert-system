@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ec5f38b-d106-4a88-8c2f-620b97605510" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/Fuzzyinference/centroids.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/inference/Centroid$centroid.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/inference/Centroid.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/inference/difuzzify.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/inference/centroid.kts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Fuzzyinference/centroid.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/inference/difuzzify.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Fuzzyinference/difuzzify.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/MainKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/MainKt.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Fuzzyinference/centroids.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Fuzzyinference/centroids.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Fuzzyinference/difuzzify.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Fuzzyinference/difuzzify.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -54,15 +50,15 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="kt" value="2280" />
+          <entry key="kt" value="2329" />
           <entry key="kts" value="2325" />
-          <entry key="txt" value="18" />
+          <entry key="txt" value="38" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Kotlin" value="4605" />
-          <entry key="PLAIN_TEXT" value="18" />
+          <entry key="Kotlin" value="4654" />
+          <entry key="PLAIN_TEXT" value="38" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages">
@@ -89,8 +85,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/Fuzzyinference/difuzzify.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10">
-              <caret line="58" column="17" selection-start-line="58" selection-start-column="17" selection-end-line="58" selection-end-column="17" />
+            <state relative-caret-position="231">
+              <caret line="64" column="33" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -110,8 +106,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/Fuzzyinference/centroids.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="30" column="21" lean-forward="true" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+            <state relative-caret-position="612">
+              <caret line="36" column="9" lean-forward="true" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
               <folding>
                 <element signature="e#23#92#0" expanded="true" />
               </folding>
@@ -688,7 +684,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539568772469" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539572888719" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
@@ -853,7 +849,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1539487785321</updated>
-      <workItem from="1539487786778" duration="51508000" />
+      <workItem from="1539487786778" duration="55407000" />
     </task>
     <task id="LOCAL-00001" summary="graphic chart">
       <created>1539492421217</created>
@@ -869,11 +865,18 @@
       <option name="project" value="LOCAL" />
       <updated>1539495238910</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="centroid in x fixed">
+      <created>1539568819191</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1539568819191</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51508000" />
+    <option name="totallyTimeSpent" value="55407000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -920,7 +923,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="graphic chart" />
-    <option name="LAST_COMMIT_MESSAGE" value="graphic chart" />
+    <MESSAGE value="centroid in x fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="centroid in x fixed" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/build.gradle">
@@ -1016,16 +1020,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/Fuzzyinference/centroid.kts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding>
-            <element signature="e#23#92#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/models/LVRegister.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1043,10 +1037,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/Fuzzyinference/centroid.kts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+          <folding>
+            <element signature="e#23#92#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/Fuzzyinference/centroids.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="30" column="21" lean-forward="true" selection-start-line="30" selection-start-column="21" selection-end-line="30" selection-end-column="21" />
+        <state relative-caret-position="612">
+          <caret line="36" column="9" lean-forward="true" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
           <folding>
             <element signature="e#23#92#0" expanded="true" />
           </folding>
@@ -1055,8 +1059,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/Fuzzyinference/difuzzify.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10">
-          <caret line="58" column="17" selection-start-line="58" selection-start-column="17" selection-end-line="58" selection-end-column="17" />
+        <state relative-caret-position="231">
+          <caret line="64" column="33" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="33" />
         </state>
       </provider>
     </entry>
