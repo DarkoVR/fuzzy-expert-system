@@ -1,4 +1,4 @@
-package vews
+package views
 
 import files.FAMFileHandler
 import files.LVFileHandler

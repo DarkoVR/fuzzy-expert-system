@@ -1,6 +1,5 @@
 package fuzzyLogic
 
-import models.Background
 import models.Coordinate
 import models.Defuzzification
 import models.LVRegister
