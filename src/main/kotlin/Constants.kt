@@ -21,6 +21,7 @@ object Constants {
     val OUTPUT_VAR_2 = "Casi suficiente de buenos resultados"
     val OUTPUT_VAR_3 = "Suficiente con resultados aceptables"
     val OUTPUT_VAR_4 = "Excelentes resultados"
+    val LINGUISTIC_VARIABLE_NUMBER = 4
     //Static arrayLists
     @JvmStatic
     val lvList: ArrayList<LVRegister> = ArrayList()

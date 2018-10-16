@@ -107,7 +107,7 @@ class MyController: Controller(){
         print("centroide : ")
 
         //println(defuzzification.calculateCentroid(Constants.RESULT_LV,fuzzyOutput))
-        logView.editorInput.value += "Centroide: ${defuzzification.calculateCentroid(Constants.RESULT_LV,fuzzyOutput)}\n"
+        //logView.editorInput.value += "Centroide: ${defuzzification.calculateCentroid(Constants.RESULT_LV,fuzzyOutput)}\n"
     }
 }
 
@@ -183,8 +183,25 @@ class EntryView : View() {
                         else
                             logView.editorInput.value = "Falta llenar algun dato!"
                     } ui {
-                        val registerList = Constants.famList.observable()
-                        variablesView.famObservables.asyncItems { registerList }
+                        val dataArray =
+                                arrayListOf(input1,input2,input3,input4,input5,input6,input7,input8)
+                        //2. Creates fuzzificationList with every entry fuzzified
+                        val somethingNull = dataArray.filter { it.value == null }
+                        if (somethingNull.isEmpty()){
+                            val registerList = Constants.famList.observable()
+                            variablesView.famObservables.asyncItems { registerList }
+                        } else
+                            logView.editorInput.value = "Falta llenar algun dato!"
+                    }
+                }
+            }
+            button("Grafico") {
+                action {
+                    runAsync {
+                        val fuzzyInference = FuzzyInference()
+                        val fuzzyOutput = fuzzyInference.getFuzzyOutput()
+                        val defuzzification = DefuzzificationProcess()
+                        logView.editorInput.value += "Centroide: ${defuzzification.calculateCentroid(Constants.RESULT_LV,fuzzyOutput)}\n"
                     }
                 }
             }

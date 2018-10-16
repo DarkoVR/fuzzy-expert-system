@@ -60,7 +60,7 @@ class FuzzyInference {
 
     fun createFamFile(){
         //Assigns the minus and output variable to every entry in the FAM
-        val assignedVariable: Int = Constants.famList.size/4
+        val assignedVariable: Int = Constants.famList.size/Constants.LINGUISTIC_VARIABLE_NUMBER
 
         var combination = 0
         Constants.famList.forEach {
