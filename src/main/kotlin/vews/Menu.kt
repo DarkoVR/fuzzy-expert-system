@@ -40,7 +40,7 @@ class Menu {
 
         //Alter the linguistic output variable in order to the fuzzy outputs
         val defuzzification = DefuzzificationProcess()
-        defuzzification.alterGraphic(Constants.RESULT_LV,fuzzyOutput)
+        //defuzzification.alterGraphic(Constants.RESULT_LV,fuzzyOutput)
 
         //val famFileHandler = FAMFileHandler()
         //famFileHandler.read(2916)
@@ -199,10 +199,15 @@ class Menu {
 
         //Get the real outputs after min-max calculus
         val fuzzyOutput = fuzzyInference.getFuzzyOutput()
-        println("salida difusa: $fuzzyOutput")
+        //println("salida difusa: $fuzzyOutput")
 
         //Alter the linguistic output variable in order to the fuzzy outputs
         val defuzzification = DefuzzificationProcess()
-        defuzzification.alterGraphic(Constants.RESULT_LV,fuzzyOutput)
+
+        //defuzzification.alterGraphic(Constants.RESULT_LV,fuzzyOutput)
+        //defuzzification.getIntersectionPoints(Constants.RESULT_LV,fuzzyOutput)
+        print("centroide : ")
+
+        println(defuzzification.calculateCentroid(Constants.RESULT_LV,fuzzyOutput))
     }
 }

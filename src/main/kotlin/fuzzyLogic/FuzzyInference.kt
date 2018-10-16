@@ -110,6 +110,9 @@ class FuzzyInference {
         outputs.add(output2)
         outputs.add(output3)
         outputs.add(output4)
+
+        println(" salidas difusas  $outputs")
+
         return outputs
     }
 }

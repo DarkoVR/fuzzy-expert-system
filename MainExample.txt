@@ -200,9 +200,12 @@ data.add(LVRegister("Solucion de problemas", arrayListOf(
             Background("malo",0.9),
             Background("malo",1.0)
     )))
+
+
     data1.forEach {
         fileHandler1.write(it)
     }
+
     fileHandler1.read()
     data1.forEach {
         fileHandler1.update(it,1)
