@@ -5,7 +5,7 @@ import Charts.SimpleChart
 import java.text.DecimalFormat
 
 class DefuzzificationProcess {
-    /*fun alterGraphic(lvRegister: LVRegister, fuzzyOuputs: ArrayList<Double>): Defuzzification {
+    fun alterGraphic(lvRegister: LVRegister, fuzzyOuputs: ArrayList<Double>): Defuzzification {
         val defuzzification = Defuzzification()
         lvRegister.let { register ->
             defuzzification.inputVariable = register.name
@@ -138,9 +138,8 @@ class DefuzzificationProcess {
             calculateCentroids(register, 0.1)
         }
         return defuzzification
-    }*/
+    }
     private fun getIntersectionPoints(membershipGrade: LVRegister, outputVariable: ArrayList<Double>): ArrayList<Coordinate> {
-        val membershipGrade = membershipGrade // grades register
         val membershipCoordenates: ArrayList<Coordinate> = getCoordenates(membershipGrade.label)
         val centroidCoordenates: ArrayList<Coordinate> = ArrayList()
         val outputVariable = outputVariable
@@ -158,32 +157,38 @@ class DefuzzificationProcess {
                 n++
 
                 if (membershipCoordenates[i].x != 100.0) {
-                    centroidCoordenates.add(calcIntersection(i, membershipCoordenates))
-                    i++
+                    if(outputVariable[n]!=0.0) {
+                        centroidCoordenates.add(calcIntersection(i, membershipCoordenates))
+                    }
+                        i++
                 }
             }
 
             if ((membershipCoordenates[i].y == membershipCoordenates[i + 1].y)) {
                 j--
             } else {
-                x = (((outputVariable[n] - membershipCoordenates[i].y) / (membershipCoordenates[i + 1].y - membershipCoordenates[i].y)) * (membershipCoordenates[i + 1].x - membershipCoordenates[i].x)) + membershipCoordenates[i].x
-                centroidCoordenates.add(Coordinate(x, outputVariable[n]))
+
+                    x = (((outputVariable[n] - membershipCoordenates[i].y) / (membershipCoordenates[i + 1].y - membershipCoordenates[i].y)) * (membershipCoordenates[i + 1].x - membershipCoordenates[i].x)) + membershipCoordenates[i].x
+                    centroidCoordenates.add(Coordinate(x, outputVariable[n]))
             }
             j++
             i++
         }
-        centroidCoordenates.add(Coordinate(membershipCoordenates[membershipCoordenates.size - 1].x, membershipCoordenates[membershipCoordenates.size - 1].y))
+
+        if(outputVariable[n]!=0.0)
+            centroidCoordenates.add(Coordinate(membershipCoordenates[membershipCoordenates.size - 1].x, membershipCoordenates[membershipCoordenates.size - 1].y))
+        else
+            centroidCoordenates.add(Coordinate(100.0,0.0))
 
         val xData : ArrayList<Double> = ArrayList()
         val yData : ArrayList<Double> = ArrayList()
-        centroidCoordenates.forEach { point ->
 
+        centroidCoordenates.forEach { point ->
                xData.add(point.x)
                yData.add(point.y)
         }
 
-        xData.removeAt(xData.size - 1)
-        yData.removeAt(yData.size-1)
+        println(centroidCoordenates)
 
         chart.graphiChart("CALIFICACION",xData.toDoubleArray(),yData.toDoubleArray())
         return centroidCoordenates
@@ -235,8 +240,8 @@ class DefuzzificationProcess {
 
         while(i<=100)
         {
-            DFV = difuzzy((80+i),intersecrionCoordenates)
-            x1=((80.0+i)*(DFV))+x1
+            DFV = difuzzy((i),intersecrionCoordenates)
+            x1=((i)*(DFV))+x1
             x2=x2+DFV
             i += 0.001
         }
@@ -301,7 +306,7 @@ class DefuzzificationProcess {
         return y
     }
 
-   /* private fun calculateCentroids(lvRegister: LVRegister, steps: Double): Double{
+    private fun calculateCentroids(lvRegister: LVRegister, steps: Double): Double{
         var forwarding = 0.0
         var result = 0.0
         var div = 0.0
@@ -343,5 +348,5 @@ class DefuzzificationProcess {
             println("Centroide: $centroid")
             return centroid
         }
-    }*/
+    }
 }

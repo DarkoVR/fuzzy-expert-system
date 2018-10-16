@@ -207,6 +207,7 @@ class Menu {
         //defuzzification.alterGraphic(Constants.RESULT_LV,fuzzyOutput)
         //defuzzification.getIntersectionPoints(Constants.RESULT_LV,fuzzyOutput)
         print("centroide : ")
+
         println(defuzzification.calculateCentroid(Constants.RESULT_LV,fuzzyOutput))
     }
 }
